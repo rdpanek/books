@@ -16,12 +16,13 @@ exports.index = function(req, res, next){
     });
 };
 
+
 /**
- * GET /pages/:page
+ * GET /books/:book
  */
 exports.show = function(req, res, next){
     res.send(req.book);
-};   
+};
 
 /**
  * POST /books
@@ -32,25 +33,13 @@ exports.create = function(req, res, next){
     var book = new Book();
     book.title = req.body.title;
     book.url = filters.url(req.body.title);
-    book.purchased = req.body.purchased;
+    book.type = "book";
     book.save(function(err, doc) {
         if (err) return next(err);
         res.json(doc);
     });
 };
 
-/**
- * PUT /pages/:page
- * 
- */
-exports.update = function(req, res, next){
-    req.book.title = req.body.title;
-    req.book.purchased = req.body.purchased;
-    req.book.save(function(err, doc) {
-        if (err) return next(err);
-        res.json(doc);
-    });
-};
 
 /**
  * DELETE /pages/:page

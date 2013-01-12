@@ -1,0 +1,18 @@
+<h1>Nová kniha</h1>
+<p>
+Formulář pro zadání nové knihy.
+</p>
+
+<form class="well" ng-submit="create()">
+
+  <fieldset>
+    <label class="control-label" for="title">Název knihy</label>
+    <input ng-model="book.title" class="input-xxlarge" required>
+  </fieldset>
+
+  <div class="form-actions">
+  		<button type="submit" class="btn btn-success btn-large">Uložit</button>
+  		<button type="button" class="btn" ng-click="close()">Zavřít</button>
+  </div>
+
+</form>

@@ -1,0 +1,14 @@
+
+	<input class="input-xxlarge" type="text" placeholder="Vyhledávání" ng-model="query">
+	<hr>
+<div class="row-fluid">
+	<div ng-repeat="book in books | filter:query">
+  		<div class="span10 lead"> {{book.title}} </div>
+  		<div class="span2">
+  			<button class="btn visible-desktop" type="button" ng-click="remove(book.url)" id="inputSuccess">Smazat</button>
+  		</div>
+  	</div>
+
+</div>
+<hr>
+Celkem {{books.length}} titulů 

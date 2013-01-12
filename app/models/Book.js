@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var fields = {
 	title: {type: String, required: true},
 	url: {type: String, required: true},
-	purchased: {type: String, required: true}
+	type: {type: String, required: true}
 };
 
 var Schema = new mongoose.Schema(fields);
