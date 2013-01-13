@@ -33,7 +33,7 @@ exports.create = function(req, res, next){
     var book = new Book();
     book.title = req.body.title;
     book.url = filters.url(req.body.title);
-    book.type = "book";
+    book.type = req.body.type;
     book.save(function(err, doc) {
         if (err) return next(err);
         res.json(doc);

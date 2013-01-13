@@ -1,8 +1,12 @@
 
 	<input class="input-xxlarge" type="text" placeholder="Vyhledávání" ng-model="query">
 	<hr>
+<ul class="nav nav-tabs">
+  <li ng-class="{'active': options.type.book}"><a ng-click="setTypeFilter('book')">Knihy</a></li>
+  <li ng-class="{'active': options.type.movie}"><a ng-click="setTypeFilter('movie')">Filmy</a></li>
+</ul>
 <div class="row-fluid">
-	<div ng-repeat="book in books | filter:query">
+	<div ng-repeat="book in books | filter:options.typeFilter | orderBy:options.predicate">
   		<div class="span10 lead"> {{book.title}} </div>
   		<div class="span2">
   			<button class="btn visible-desktop" type="button" ng-click="remove(book.url)" id="inputSuccess">Smazat</button>

@@ -1,14 +1,18 @@
-<h1>Nová kniha</h1>
+<h1>Nový titul</h1>
 <p>
-Formulář pro zadání nové knihy.
+Formulář pro zadání nové knihy nebo filmu do databáze.
 </p>
 
 <form class="well" ng-submit="create()">
 
   <fieldset>
-    <label class="control-label" for="title">Název knihy</label>
-    <input ng-model="book.title" class="input-xxlarge" required>
+    <input type="text" ng-model="book.title" class="input-xxlarge" required placeholder="Název knihy nebo filmu">
+    <select ng-model="book.type">
+	  <option value="movie">Film</option>
+	  <option value="book">Kniha</option>
+	</select>
   </fieldset>
+
 
   <div class="form-actions">
   		<button type="submit" class="btn btn-success btn-large">Uložit</button>
