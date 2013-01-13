@@ -13,6 +13,9 @@ exports.configure = function(app) {
 	app.configure('development', function(){
 		app.set('db uri', 'mongodb://localhost/books');
 	});
+	app.configure('production', function(){
+        app.set('db uri', 'mongodb://books:books2@linus.mongohq.com:10023/app10916296');
+    });
 }
 
 
