@@ -13,6 +13,11 @@ exports.index = function(req, res, next){
     }
     Book.find({}, req.katalog.fields, function(err, docs) {
         if (err) return next(err);
+
+        for (var i=0;i<docs.length;i++)
+        {
+            docs[i].url = removeDiacritics(docs[i].url);
+        }    
         res.json(docs);
     });
 };
