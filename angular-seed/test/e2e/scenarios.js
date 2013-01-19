@@ -1,45 +1,80 @@
 'use strict';
 
-/* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
+describe('Book', function() {
 
-describe('my app', function() {
-
-  beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
-  });
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser().location().url()).toBe("/view1");
-  });
-
-
-  describe('view1', function() {
+  describe('Vypis titulu', function() {
 
     beforeEach(function() {
-      browser().navigateTo('#/view1');
+      browser().navigateTo('../../index.html');
     });
 
+    it('overi nadpis stranky', function(){
+     expect(element('h3').text()).toBe('Databáze titulů');
+    });
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 1/);
+    describe('vypis knih', function(){
+      
+      it('kontrola, zdali je prepnuta zalozka \"Knihy\"', function(){
+        expect(element('#book').text()).toBe('Knihy');
+      });
+
+      it('kontrola, zdali je vypsano vice zaznamu nez nula', function(){
+          expect(repeater('.item').count()).toBeGreaterThan(0);
+      });
+    });
+
+    describe('vypis filmu', function(){
+      
+      it('kliknuti na zalozku \"Filmy\"', function(){
+        expect(element('#movie a').click());
+      });
+
+      it('kontrola, zdali je prepnuta zalozka \"Filmy\"', function(){
+        expect(element('#movie').text()).toBe('Filmy');
+      });
+
+      it('kontrola, zdali je vypsano vice zaznamu nez nula', function(){
+          expect(repeater('.item').count()).toBeGreaterThan(0);
+      });
+
     });
 
   });
 
+  describe('Pridani nove knihy', function(){
 
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view2');
+    it('klikne na tlacitko \"Ulozit novy\"', function(){
+      element('#new_title').click();
     });
 
+    it('zkontroluje url stranky pro vytvareni noveho titulu', function(){
+      expect( element('h1').text()).toBe('Nový titul');
+    });
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 2/);
+    it('vlozi testovaci knihu', function(){
+      expect( input('book.title').enter('Testovaci kniha'));
+      expect( select('book.type').option('Kniha'));
+      expect( element('.btn-success').click());
     });
 
   });
+
+  describe('Pridani noveho filmu', function(){
+
+    it('klikne na tlacitko \"Ulozit novy\"', function(){
+      element('#new_title').click();
+    });
+
+    it('zkontroluje url stranky pro vytvareni noveho titulu', function(){
+      expect( element('h1').text()).toBe('Nový titul');
+    });
+
+    it('vlozi testovaci film', function(){
+      expect( input('book.title').enter('Testovaci film'));
+      expect( select('book.type').option('Film'));
+      expect( element('.btn-success').click());
+    });
+
+  });
+
 });
