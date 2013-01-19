@@ -39,7 +39,7 @@ function ViewCtrl($scope, $location, Book) {
 
 // Pridani nove knihy
 function NewCtrl($scope, $location, Book) {
-    $scope.book = {type:"movie"};
+    $scope.book = {type:"book"};
     $scope.create = function() {
         Book.create($scope.book, function(){
             $location.path('/books');
