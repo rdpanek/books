@@ -115,7 +115,18 @@ describe('API books', function(){
 					});
 				});
 		});
-		it('nevyrizeny test');
+		it('zkontroluje ulození url, zdali je bez diakritiky a mezery jsou nahrazeny pomlckami', function(done){
+			request(app)
+				.post('/v1/api/books')
+				.send({title: 'Prvni kniha', url: 'první kniha', type: 'book'})
+				.expect(200)
+				.end(function(err, res){
+					Book.findOne({url: 'prvni-kniha'}, function(err, doc){
+						if (doc == null) throw ('zaznam nebyl nalezen');
+        				done();
+					});
+				}) ;
+		});
 	});
 	
 });
