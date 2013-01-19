@@ -2,6 +2,7 @@ var Book = require(process.cwd() + '/app/models/Book')
   , filters = {};
   
 filters.url = require(process.cwd() + '/lib/filters/url');
+removeDiacritics = require('diacritics').remove;
 
 /**
  * GET /books
@@ -32,7 +33,7 @@ exports.show = function(req, res, next){
 exports.create = function(req, res, next){
     var book = new Book();
     book.title = req.body.title;
-    book.url = filters.url(req.body.title);
+    book.url = filters.url(removeDiacritics(req.body.title));
     book.type = req.body.type;
     book.save(function(err, doc) {
         if (err) return next(err);
