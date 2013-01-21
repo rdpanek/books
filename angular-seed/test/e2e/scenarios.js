@@ -25,11 +25,9 @@ describe('Book', function() {
 
     describe('vypis filmu', function(){
       
-      it('kliknuti na zalozku \"Filmy\"', function(){
-        expect(element('#movie a').click());
-      });
+      it('kliknuti na zalozku \"Filmy\" a zkontrolovani, ze je zalozka opravdu aktivni', function(){
 
-      it('kontrola, zdali je prepnuta zalozka \"Filmy\"', function(){
+        expect(element('#movie a').click());
         expect(element('#movie').text()).toBe('Filmy');
       });
 
